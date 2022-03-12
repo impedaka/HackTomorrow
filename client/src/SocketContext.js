@@ -12,7 +12,7 @@ const ContextProvider = ({ children }) => {
     const [call, setCall] = useState({});
     const [callAccepted, setCallAccepted] = useState(false);
     const [callEnded, setCallEnded] = useState(false);
-    const [name, setName] = userState('');
+    const [name, setName] = useState('');
 
     const myVideo = useRef();
     const userVideo = useRef();
@@ -78,4 +78,12 @@ const ContextProvider = ({ children }) => {
 
         window.location.reload();
     }
+    
+    return(
+        <SocketContext.Provider value={{ call, callAccepted, myVideo, userVideo, stream, name, setName, callEnded, me, callUser, leaveCall, answerCall, }}>
+            {children}
+        </SocketContext.Provider>
+    )
 }
+
+export { ContextProvider, SocketContext };
